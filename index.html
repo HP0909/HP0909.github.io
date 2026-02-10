@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mummy!</title>
+    <title>Happy Birthday Mammy!</title>
     <style>
         :root {
             --primary-pink: #ff85a2;
@@ -42,7 +42,6 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Header Section */
         header {
             padding: 50px 20px;
             background: white;
@@ -56,7 +55,6 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Photo Gallery */
         .gallery {
             display: flex;
             justify-content: center;
@@ -84,7 +82,6 @@
             display: block;
         }
 
-        /* Message Box */
         .message-section {
             max-width: 600px;
             margin: 40px auto;
@@ -114,6 +111,11 @@
 </head>
 <body>
 
+    <audio id="myAudio" loop>
+        <source src="birthday-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="hearts" id="heart-container"></div>
 
     <header>
@@ -138,21 +140,29 @@
 
     <div class="message-section">
         <h3>A Special Note for You</h3>
-        <p>Click the button below to see my message.</p>
-        <button class="btn" onclick="revealMessage()">Click to Open</button>
+        <p>Click the button below to see my message and hear a song.</p>
+        <button class="btn" onclick="revealAndPlay()">Click to Open </button>
         <div id="hidden-message">
             <p>"To the woman who gave me everything: Thank you for your endless love and support. I hope this year brings you as much happiness as you bring to everyone around you. I love you!"</p>
         </div>
     </div>
 
     <script>
-        // Function to reveal the message
-        function revealMessage() {
+        // Combined function to handle UI and Audio
+        function revealAndPlay() {
+            // Reveal the message
             document.getElementById('hidden-message').style.display = 'block';
+            
+            // Play the music
+            var audio = document.getElementById("myAudio");
+            audio.play().catch(function(error) {
+                console.log("Browser blocked autoplay. Audio will play after interaction.");
+            });
+
+            // Scroll down smoothly
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
 
-        // Create floating hearts
         function createHeart() {
             const container = document.getElementById('heart-container');
             const heart = document.createElement('div');
@@ -169,4 +179,3 @@
     </script>
 </body>
 </html>
-
