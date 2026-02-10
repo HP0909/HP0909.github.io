@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mammy!</title>
+    <style>
+        :root {
+            --primary-pink: #ff85a2;
+            --soft-gold: #d4af37;
+            --bg-color: #fff5f7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #444;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Animated Hearts Background */
+        .hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--primary-pink);
+            font-size: 20px;
+            animation: float 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header Section */
+        header {
+            padding: 50px 20px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--primary-pink);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: 0.3s;
+            width: 250px;
+        }
+
+        .photo-card:nth-child(even) { transform: rotate(3deg); }
+        .photo-card:hover { transform: rotate(0deg) scale(1.05); }
+
+        .photo-card img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        /* Message Box */
+        .message-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-pink);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .btn {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 133, 162, 0.4);
+        }
+
+        .btn:hover { background: #ff5e84; }
+
+        #hidden-message { display: none; margin-top: 20px; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heart-container"></div>
+
+    <header>
+        <h1>Happy Birthday, Maa! ❤️‍🩹</h1>
+        <p>To my anchor and inspiration: thank you for everything, Mom. I promise that I will fulfill your dreams and make you feel truly proud of me.</p>
+    </header>
+
+    <div class="gallery">
+        <div class="photo-card">
+            <img src="mom1.jpeg" alt="Mom Picture 1">
+            <p>The Queen of our home</p>
+        </div>
+        <div class="photo-card">
+            <img src="mom2.jpeg" alt="Mom Picture 2">
+            <p>Always smiling</p>
+        </div>
+        <div class="photo-card">
+            <img src="mom3.jpeg" alt="Mom Picture 3">
+            <p>Best Mom in the world</p>
+        </div>
+    </div>
+
+    <div class="message-section">
+        <h3>A Special Note for You</h3>
+        <p>Click the button below to see my message.</p>
+        <button class="btn" onclick="revealMessage()">Click to Open</button>
+        <div id="hidden-message">
+            <p>"To the woman who gave me everything: Thank you for your endless love and support. I hope this year brings you as much happiness as you bring to everyone around you. I love you!"</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to reveal the message
+        function revealMessage() {
+            document.getElementById('hidden-message').style.display = 'block';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        // Create floating hearts
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            container.appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
